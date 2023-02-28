@@ -139,6 +139,7 @@ const useAppCommunicator = (
       const params = msg.data.params as RPCPayload;
 
       try {
+        console.log("params", params)
         return await safeAppWeb3Provider?.send(params.call, params.params);
       } catch (err) {
         throw new Error((err as JsonRpcResponse).error);

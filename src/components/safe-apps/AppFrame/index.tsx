@@ -27,12 +27,12 @@ type AppFrameProps = {
 
 const rpcURI = {
   authentication: RPC_AUTHENTICATION.UNKNOWN,
-  value: "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+  value: "https://data-seed-prebsc-1-s1.binance.org:8545",
 } as RpcUri;
 
 const chain = {
-  chainId: "5",
-  chainName: "Goerli",
+  chainId: "97",
+  chainName: "Binance Smart Chain Testnet",
   rpcUri: rpcURI,
   safeAppsRpcUri: rpcURI,
 } as ChainInfo;
@@ -99,11 +99,13 @@ export const AppFrame = ({
         });
         const safeTxHash = await safeSdk.getTransactionHash(tx);
         if ((await safeSdk.getThreshold()) === 1) {
-          await safeSdk.executeTransaction(tx);
+          await safeSdk.executeTransaction(tx, {
+            gasLimit: 250000000,
+          });
         } else {
           const senderSignature = await safeSdk.signTransactionHash(safeTxHash);
           const safeService = new SafeServiceClient({
-            txServiceUrl: "http://18.218.241.2",
+            txServiceUrl: "https://zebec-safe-multisig.alishdahal.com.np",
             ethAdapter,
           });
           console.log(
@@ -138,6 +140,7 @@ export const AppFrame = ({
         origin: document.location.origin,
       }),
       onGetSafeInfo: () => {
+        console.log("onGetSafeInfo", safeAddress);
         return {
           safeAddress:
             safeAddress || "0x588Ad561cBd35615389dc311532947339dbe5CF8",
@@ -147,11 +150,13 @@ export const AppFrame = ({
           isReadOnly: false,
         };
       },
-      onGetSafeBalances: (currency) =>
-        getBalances((chainId || 97).toString(), safeAddress || "", currency, {
+      onGetSafeBalances: (currency) =>{
+        console.log("onGetSafeBalances", currency);
+        return  getBalances((chainId || 97).toString(), safeAddress || "", currency, {
           exclude_spam: true,
           trusted: false,
-        }),
+        })
+      },
       onGetChainInfo: () => {
         if (!chain) return;
 

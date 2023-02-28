@@ -70,7 +70,8 @@ export const MySafe = () => {
     if (!ethAdapter || !id) return;
     (async () => {
       const safeService = new SafeServiceClient({
-        txServiceUrl: "https://safe-transaction-goerli.safe.global",
+
+        txServiceUrl: "https://zebec-safe-multisig.alishdahal.com.np",
         ethAdapter,
       });
       console.log("ddd", id)

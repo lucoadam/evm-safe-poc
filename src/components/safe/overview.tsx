@@ -41,7 +41,7 @@ export const SafeOverview: React.FC<{
       } else {
         const sig = await safeSdk?.signTransactionHash(txnHash);
         const safeService = new SafeServiceClient({
-          txServiceUrl: "http://18.218.241.2",
+          txServiceUrl: "https://zebec-safe-multisig.alishdahal.com.np",
           ethAdapter,
         });
         try {
@@ -137,7 +137,7 @@ export const SafeOverview: React.FC<{
                   if (!txnHash || !ethAdapter) return;
                   const sig = await safeSdk?.signTransactionHash(txnHash);
                   const safeService = new SafeServiceClient({
-                    txServiceUrl: "http://18.218.241.2",
+                    txServiceUrl: "https://zebec-safe-multisig.alishdahal.com.np",
                     ethAdapter,
                   });
                   try {
@@ -190,7 +190,7 @@ export const SafeOverview: React.FC<{
                   if (!txnHash || !ethAdapter) return;
                   const sig = await safeSdk?.signTransactionHash(txnHash);
                   const safeService = new SafeServiceClient({
-                    txServiceUrl: "http://18.218.241.2",
+                    txServiceUrl: "https://zebec-safe-multisig.alishdahal.com.np",
                     ethAdapter,
                   });
                   try {
@@ -260,7 +260,7 @@ export const SafeOverview: React.FC<{
                   if (!txnHash || !ethAdapter) return;
                   const sig = await safeSdk?.signTransactionHash(txnHash);
                   const safeService = new SafeServiceClient({
-                    txServiceUrl: "http://18.218.241.2",
+                    txServiceUrl: "https://zebec-safe-multisig.alishdahal.com.np",
                     ethAdapter,
                   });
                   try {

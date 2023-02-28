@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios"
 const api = axios.create({
-  baseURL: "http://18.218.241.2/api/v1",
+  baseURL: "https://zebec-safe-multisig.alishdahal.com.np/api/v1",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json; charset=utf-8"

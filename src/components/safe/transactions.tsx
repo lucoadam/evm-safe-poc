@@ -17,7 +17,7 @@ export const SafeTransactions: React.FC<{
     let signature = await safeSdk?.signTransactionHash(hash);
     if (!signature || !ethAdapter) return;
     const safeService = new SafeServiceClient({
-      txServiceUrl: "http://18.218.241.2",
+      txServiceUrl: "https://zebec-safe-multisig.alishdahal.com.np",
       ethAdapter,
     });
     await safeService?.confirmTransaction(hash, signature.data);
