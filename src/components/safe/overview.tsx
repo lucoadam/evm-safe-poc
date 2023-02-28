@@ -41,7 +41,7 @@ export const SafeOverview: React.FC<{
       } else {
         const sig = await safeSdk?.signTransactionHash(txnHash);
         const safeService = new SafeServiceClient({
-          txServiceUrl: "https://safe-transaction-goerli.safe.global",
+          txServiceUrl: "http://18.218.241.2",
           ethAdapter,
         });
         try {
@@ -137,7 +137,7 @@ export const SafeOverview: React.FC<{
                   if (!txnHash || !ethAdapter) return;
                   const sig = await safeSdk?.signTransactionHash(txnHash);
                   const safeService = new SafeServiceClient({
-                    txServiceUrl: "https://safe-transaction-goerli.safe.global",
+                    txServiceUrl: "http://18.218.241.2",
                     ethAdapter,
                   });
                   try {
@@ -190,7 +190,7 @@ export const SafeOverview: React.FC<{
                   if (!txnHash || !ethAdapter) return;
                   const sig = await safeSdk?.signTransactionHash(txnHash);
                   const safeService = new SafeServiceClient({
-                    txServiceUrl: "https://safe-transaction-goerli.safe.global",
+                    txServiceUrl: "http://18.218.241.2",
                     ethAdapter,
                   });
                   try {
@@ -260,7 +260,7 @@ export const SafeOverview: React.FC<{
                   if (!txnHash || !ethAdapter) return;
                   const sig = await safeSdk?.signTransactionHash(txnHash);
                   const safeService = new SafeServiceClient({
-                    txServiceUrl: "https://safe-transaction-goerli.safe.global",
+                    txServiceUrl: "http://18.218.241.2",
                     ethAdapter,
                   });
                   try {

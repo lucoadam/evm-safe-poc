@@ -46,7 +46,7 @@ export const AppFrame = ({
     useAppIsLoading();
   const { id: safeAddress } = useParams();
 
-  const { safeApp: safeAppFromManifest } = useSafeAppFromManifest(appUrl, "5");
+  const { safeApp: safeAppFromManifest } = useSafeAppFromManifest(appUrl, "97");
 
   const { id } = useParams();
   const { ethAdapter, walletConnected, signerAddress } = useEthereumProvider();
@@ -103,7 +103,7 @@ export const AppFrame = ({
         } else {
           const senderSignature = await safeSdk.signTransactionHash(safeTxHash);
           const safeService = new SafeServiceClient({
-            txServiceUrl: "https://safe-transaction-goerli.safe.global",
+            txServiceUrl: "http://18.218.241.2",
             ethAdapter,
           });
           console.log(
@@ -133,7 +133,7 @@ export const AppFrame = ({
         return [];
       },
       onGetTxBySafeTxHash: (safeTxHash) =>
-        getTransactionDetails((chainId || 5).toString(), safeTxHash),
+        getTransactionDetails((chainId || 97).toString(), safeTxHash),
       onGetEnvironmentInfo: () => ({
         origin: document.location.origin,
       }),
@@ -141,14 +141,14 @@ export const AppFrame = ({
         return {
           safeAddress:
             safeAddress || "0x588Ad561cBd35615389dc311532947339dbe5CF8",
-          chainId: 5,
+          chainId: 97,
           owners: [],
           threshold: 2,
           isReadOnly: false,
         };
       },
       onGetSafeBalances: (currency) =>
-        getBalances((chainId || 5).toString(), safeAddress || "", currency, {
+        getBalances((chainId || 97).toString(), safeAddress || "", currency, {
           exclude_spam: true,
           trusted: false,
         }),

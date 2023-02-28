@@ -119,7 +119,8 @@ export const MySafe = () => {
           allowedFeaturesList={getAllowedFeaturesList(
             "https://app.uniswap.org"
           )}
-          appUrl="https://app.uniswap.org/#/swap?outputCurrency=0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
+          // appUrl="https://app.uniswap.org/#/swap?outputCurrency=0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
+          appUrl="https://pancakeswap.finance/"
           key={safeData.safeAddress}
           safeSdk={safeSdk}
         />

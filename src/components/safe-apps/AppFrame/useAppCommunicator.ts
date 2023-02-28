@@ -91,7 +91,7 @@ const useAppCommunicator = (
     ) => {
       communicatorInstance = new AppCommunicator(iframeRef, {
         onMessage: (msg) => {
-          // console.log("msg", msg)
+          console.log("msg", msg)
         },
         onError: (error, data) => {
           console.log(error.message, {
