@@ -1,10 +1,10 @@
 import React from "react";
 import { useEthereumProvider } from "../../context/EthreumContextProvider";
-import { ethers, BigNumber, utils } from "ethers";
 import Safe from "@safe-global/safe-core-sdk";
 import { SafeTransactionDataPartial } from "@safe-global/safe-core-sdk-types";
 import SafeServiceClient from "@safe-global/safe-service-client";
 import { toast } from "react-toastify";
+import { utils } from "ethers";
 
 export const SafeOverview: React.FC<{
   safeData: any;
@@ -14,11 +14,8 @@ export const SafeOverview: React.FC<{
   const [ownerToRemove, setOwnerToRemove] = React.useState<string>("");
   const {
     ethAdapter,
-    walletConnected,
     trimWalletAddress,
     signerAddress,
-    provider,
-    signer,
   } = useEthereumProvider();
   const handleTransfer = async () => {
     if (!safeSdk) return;

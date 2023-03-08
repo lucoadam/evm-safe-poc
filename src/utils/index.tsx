@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios"
+import axios from "axios"
 const api = axios.create({
   baseURL: "https://zebec-safe-multisig.alishdahal.com.np/api/v1",
   headers: {

@@ -42,7 +42,7 @@ export const AppFrame = ({
   allowedFeaturesList,
 }: AppFrameProps): ReactElement => {
   const { chainId } = useEthereumProvider();
-  const { iframeRef, appIsLoading, isLoadingSlow, setAppIsLoading } =
+  const { iframeRef, appIsLoading, setAppIsLoading } =
     useAppIsLoading();
   const { id: safeAddress } = useParams();
 
@@ -100,7 +100,7 @@ export const AppFrame = ({
         const safeTxHash = await safeSdk.getTransactionHash(tx);
         if ((await safeSdk.getThreshold()) === 1) {
           await safeSdk.executeTransaction(tx, {
-            gasLimit: 250000000,
+            gasLimit: 300000,
           });
         } else {
           const senderSignature = await safeSdk.signTransactionHash(safeTxHash);

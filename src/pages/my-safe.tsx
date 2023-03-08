@@ -1,23 +1,28 @@
-import { MySafeCard } from "../components/mySafeCard";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useEthereumProvider } from "../context/EthreumContextProvider";
 import Safe from "@safe-global/safe-core-sdk";
-import { BigNumber, ethers } from "ethers";
+import {  ethers } from "ethers";
 import { AppFrame } from "../components/safe-apps/AppFrame";
 import { useBrowserPermissions } from "../hooks/safe-apps/permissions";
 import SafeServiceClient from "@safe-global/safe-service-client";
-import { SafeMultisigTransactionResponse } from "@safe-global/safe-core-sdk-types";
-import moment from "moment"
 import { SafeOverview, SafeTransactions } from "../components";
+
+const supportedUrls = [
+  "https://pancakeswap.finance/",
+  "https://app.aave.com",
+  "https://swap.cow.fi",
+]
+
 
 export const MySafe = () => {
   const { id } = useParams();
-  const { ethAdapter, walletConnected, trimWalletAddress } = useEthereumProvider();
+  const { ethAdapter, walletConnected } = useEthereumProvider();
   const [safeSdk, setSafeSdk] = useState<Safe | undefined>(undefined);
   const [transactionType, setTransactionType] = useState<"pending"| "all">("all")
   const [pendingTransactions, setPendingTransactions] = useState<any[]>([]);
   const [currentTab, setCurrentTab] = useState<string>("overview")
+  const [currentUrl, setCurrentUrl] = useState<string>("https://pancakeswap.finance/")
 
   const [safeData, setSafeData] = useState({
     safeAddress: "",
@@ -64,7 +69,7 @@ export const MySafe = () => {
       }
     }
     SetData();
-  }, [id, walletConnected, currentTab]);
+  }, [id, walletConnected, currentTab, ethAdapter]);
 
   useEffect(() => {
     if (!ethAdapter || !id) return;
@@ -114,14 +119,22 @@ export const MySafe = () => {
       {currentTab === 'overview' && <SafeOverview safeData={safeData} safeSdk={safeSdk} />}
       {currentTab === 'transactions' && <SafeTransactions safeSdk={safeSdk} safeData={safeData} pendingTransactions={pendingTransactions} transactionType={transactionType} setType={setTransactionType} />}
       {currentTab === 'safe-apps' && <>
-        <span className="text-2xl font-bold">Uniswap</span>
-      {walletConnected && (
+        <div>
+        {supportedUrls.map(each=><div
+          key={each}
+          className={`px-4 ${each=== currentUrl ? 'bg-button': ''} py-3 text-medium cursor-pointer rounded-lg`}
+          onClick={()=>{
+            setCurrentUrl(each)
+          }}
+        > {each} </div>)}
+        </div>
+      {walletConnected && currentUrl !== "" && (
         <AppFrame
           allowedFeaturesList={getAllowedFeaturesList(
-            "https://app.uniswap.org"
+            currentUrl
           )}
           // appUrl="https://app.uniswap.org/#/swap?outputCurrency=0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
-          appUrl="https://pancakeswap.finance/"
+          appUrl={currentUrl}
           key={safeData.safeAddress}
           safeSdk={safeSdk}
         />
